@@ -718,20 +718,22 @@ button{font-family:inherit;}
 .kb-toggle-btn.active svg circle:nth-child(1),
 .kb-toggle-btn.active svg circle:nth-child(4){ animation-delay:0s; }
 .kb-toggle-btn.active svg circle:nth-child(2),
-.kb-toggle-btn.active svg circle:nth-child(5){ animation-delay:.14s; }
+.kb-toggle-btn.active svg circle:nth-child(5){ animation-delay:.2s; }
 .kb-toggle-btn.active svg circle:nth-child(3),
-.kb-toggle-btn.active svg circle:nth-child(6){ animation-delay:.28s; }
+.kb-toggle-btn.active svg circle:nth-child(6){ animation-delay:.4s; }
 @keyframes kbFlagWave{
   0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-1.3px);}
+  25%{transform:translateY(-3.6px);}
+  75%{transform:translateY(3.6px);}
 }
 .kb-toggle-btn.kb-toggle-tapped{
-  animation:kbTogglePop .38s cubic-bezier(.34,1.56,.64,1);
+  animation:kbTogglePop .55s cubic-bezier(.34,1.56,.64,1);
 }
 @keyframes kbTogglePop{
   0%{transform:scale(1);}
-  35%{transform:scale(0.72) translateY(3px);}
-  70%{transform:scale(1.25);}
+  28%{transform:scale(0.4) translateY(4px);}
+  62%{transform:scale(1.7);}
+  82%{transform:scale(0.92);}
   100%{transform:scale(1);}
 }
 .search-hint{
@@ -777,7 +779,7 @@ html[data-kb-theme="app"] .kb-panel{
   display:flex;
   justify-content:center;
   align-items:stretch;
-  gap:6px;
+  gap:5px;
 }
 .kb-key{
   position:relative;
@@ -830,8 +832,8 @@ html[data-kb-theme="app"] .kb-key.kb-placeholder{
   position:absolute;
   font-size:12px;
   line-height:1;
-  color:var(--ink-soft);
-  opacity:.75;
+  color:#8c8c8c;
+  opacity:.9;
   pointer-events:none;
 }
 .kb-key .kb-hint-tl{top:4px;left:3px;}
@@ -841,15 +843,21 @@ html[data-kb-theme="app"] .kb-key.kb-placeholder{
 .kb-key.kb-num{font-size:24px;}
 .kb-key.kb-backspace{color:#6e6e6e;font-size:18px;flex:0 0 46px;}
 .kb-key.kb-space{
-  font-family:'Vazirmatn','LocalFallback',sans-serif;
-  font-size:13px;
-  font-weight:600;
+  font-family:'Noto Naskh Arabic','LocalFallback',serif;
+  font-size:15px;
+  font-weight:400;
   color:#1a1a1a;
   background:#fbfbfb;
-  flex:0 0 150px;
+  flex:1 1 auto;
+  min-width:0;
+}
+.kb-lang-en .kb-key.kb-space{
+  font-family:'Vazirmatn','LocalFallback',sans-serif;
+  font-size:13px;
+  font-weight:350;
 }
 .kb-key.kb-comma,.kb-key.kb-zwnj,.kb-key.kb-dot,.kb-key.kb-placeholder,.kb-key.kb-page-toggle,.kb-key.kb-lang{
-  flex:0 0 38px;
+  flex:0 0 calc((100% - 50px) / 11);
   font-size:20px;
 }
 .kb-key.kb-placeholder{border-radius:18px;flex:0 0 52px;}
@@ -1340,6 +1348,43 @@ html[data-kb-theme="dark"] .kb-multi-popup{
 }
 .proverb-card:active{filter:brightness(0.99);}
 
+
+/* ---- Enter key, slim nav strip, hint colour per keyboard theme ---- */
+.kb-key.kb-enter{
+  flex:0 0 52px;
+  border-radius:18px;
+  background:#d4d4d4;
+  color:#4a4a4a;
+}
+html[data-kb-theme="app"] .kb-key .kb-hint{color:var(--ink-soft);}
+html[data-kb-theme="app"] .kb-key.kb-enter{background:color-mix(in srgb, var(--surface) 60%, var(--ink) 15%);color:var(--ink-soft);}
+html[data-kb-theme="app"] html[data-kb-theme="dark"] .kb-key.kb-enter{background:#1c1c1e;color:#d0d0d0;}
+html[data-kb-theme="dark"] 
+/* ---- Emoji page: same letter font as the keys above, fixed default look ---- */
+.kb-emoji-back-top{
+  font-family:'Noto Naskh Arabic','LocalFallback',serif;
+  font-size:15px;
+  font-weight:400;
+  color:#6e6e6e;
+}
+.kb-emoji-badge{color:#6e6e6e;}
+.kb-emoji-topbar{border-bottom-color:rgba(0,0,0,0.12);}
+.kb-panel{border-top-color:rgba(0,0,0,0.1);}
+.kb-multi-popup{background:#fff;}
+.kb-multi-opt{background:#ececec;color:#1a1a1a;}
+.kb-key-preview{background:#fff;color:#1a1a1a;}
+html[data-kb-theme="app"] .kb-emoji-back-top,
+html[data-kb-theme="app"] .kb-emoji-badge{color:var(--ink-soft);}
+html[data-kb-theme="app"] .kb-emoji-topbar,
+html[data-kb-theme="app"] .kb-panel{border-color:var(--line);}
+html[data-kb-theme="app"] .kb-multi-popup,
+html[data-kb-theme="app"] .kb-key-preview{background:var(--surface);}
+html[data-kb-theme="app"] .kb-multi-opt{background:var(--linen-2);color:var(--ink);}
+html[data-kb-theme="app"] .kb-key-preview{color:var(--ink);}
+html[data-kb-theme="dark"] .kb-key-preview{background:#3a3a3c;color:#f2f2f2;}
+html[data-kb-theme="dark"] .kb-emoji-badge{color:#d0d0d0;}
+
+.kb-key.kb-enter{cursor:default;}
 
 </style>
 </head>
@@ -2092,7 +2137,9 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
         '<svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l-5 6 5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 6l5 6-5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="4" x2="12" y2="20" stroke="currentColor" stroke-width="2" stroke-dasharray="2.4 2.4" stroke-linecap="round"/></svg>' +
       '</button>' +
       '<button type="button" class="kb-key kb-dot" data-key="." data-hints="'+encodeURIComponent(JSON.stringify(['ْ','َ','ِ','ُ','ّ','ً','ٍ','ٌ']))+'">.</button>' +
+      ENTER_KEY_HTML +
     '</div>';
+    syncKbHeight();
   }
 
   const GLOBE_ICON_SVG = '<svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><ellipse cx="12" cy="12" rx="4.2" ry="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="2.5" y1="12" x2="21.5" y2="12" stroke="currentColor" stroke-width="1.6"/><path d="M4 7.5c2 1.3 4.9 2 8 2s6-.7 8-2M4 16.5c2-1.3 4.9-2 8-2s6 .7 8 2" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>';
@@ -2130,9 +2177,13 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
       '<button type="button" class="kb-key kb-lang" data-action="lang-toggle" aria-label="Change keyboard language">' + GLOBE_ICON_SVG + '</button>' +
       '<button type="button" class="kb-key kb-space" data-action="space">English</button>' +
       '<button type="button" class="kb-key kb-dot" data-key=".">.</button>' +
+      ENTER_KEY_HTML +
     '</div>';
+    syncKbHeight();
   }
 
+  const ENTER_ICON_SVG = '<svg viewBox="0 0 24 24" width="20" height="20"><path d="M20 12H5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const ENTER_KEY_HTML = '<button type="button" class="kb-key kb-enter" aria-disabled="true" aria-label="Enter">' + ENTER_ICON_SVG + '</button>';
   const EMOJI_ICON_SVG = '<svg viewBox="0 0 24 24" width="14" height="14"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.7" cy="9.8" r="1.15" fill="currentColor"/><circle cx="15.3" cy="9.8" r="1.15" fill="currentColor"/><path d="M8 14.2c1 1.4 2.4 2.1 4 2.1s3-.7 4-2.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
 
   const EMOJI_CATEGORIES = [
@@ -2271,6 +2322,7 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
       });
     });
     renderEmojiCategory();
+    syncKbHeight();
   }
   function openEmojiPicker(){
     kbMode = 'emoji';
@@ -2325,10 +2377,9 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
       (page === 1
         ? '<button type="button" class="kb-key kb-dot" data-key=".">.</button>'
         : '<button type="button" class="kb-key kb-dot" data-action="symbols1" aria-label="صفحه‌ی بعد">»</button>') +
-      '<button type="button" class="kb-key kb-zwnj" data-action="close-keyboard" aria-label="بستن صفحه‌کلید">' +
-        '<svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-      '</button>' +
+      ENTER_KEY_HTML +
     '</div>';
+    syncKbHeight();
   }
   function openSymbolsPage(page){ buildSymbolsPage(page); }
 
@@ -2356,19 +2407,18 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
   }
 
   let kbCloseTimer = null;
-  function openKeyboard(){
-    kbOpen = true;
+  // Two separate ideas:
+  //  - kbArmed: the in-app keyboard is "on" (toggle icon waves, the phone's
+  //    own keyboard is suppressed). Stays on until the icon is tapped again
+  //    or the user leaves the search tab.
+  //  - kbOpen: the keyboard panel is actually on screen right now. The
+  //    chevron key hides the panel but leaves the keyboard armed, so tapping
+  //    the search field brings it straight back.
+  let kbArmed = false;
+  function showKbPanel(){
     clearTimeout(kbCloseTimer);
     buildKeyboard();
     kbPanel.classList.add('kb-visible');
-    kbToggle.classList.add('active');
-    kbToggle.setAttribute('aria-expanded','true');
-    // inputmode="none" alone is the correct way to suppress the phone's own
-    // on-screen keyboard while keeping the field genuinely editable — a
-    // readOnly field also kills the blinking caret and tap-to-position-
-    // cursor, which is exactly what we don't want here.
-    searchInput.setAttribute('inputmode','none');
-    searchInput.focus({preventScroll:true});
     // Measure the keyboard's natural height first (scrollHeight still works
     // even while height:0/overflow:hidden), then animate height + the
     // tabbar's padding together so it visually gets pushed up by the
@@ -2378,23 +2428,73 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
     kbPanel.style.height = targetHeight + 'px';
     kbPanel.classList.add('kb-open');
     tabbarEl.classList.add('kb-compact');
+    kbOpen = true;
+    kbPushHistory();
   }
-  function closeKeyboard(){
+  function hideKbPanel(){
     kbOpen = false;
     kbPanel.classList.remove('kb-open');
     kbPanel.style.height = '0px';
     tabbarEl.classList.remove('kb-compact');
-    kbToggle.classList.remove('active');
-    kbToggle.setAttribute('aria-expanded','false');
-    searchInput.removeAttribute('inputmode');
     clearTimeout(kbCloseTimer);
     kbCloseTimer = setTimeout(() => { kbPanel.classList.remove('kb-visible'); }, 320);
   }
+  // Called after switching between letters / symbols / emoji so the panel
+  // is exactly as tall as its current content (nothing clipped, no gap).
+  function syncKbHeight(){
+    if(!kbOpen || !kbPanel.classList.contains('kb-visible')) return;
+    kbPanel.style.height = 'auto';
+    const h = kbPanel.offsetHeight;
+    kbPanel.style.height = h + 'px';
+  }
+  function openKeyboard(){
+    kbArmed = true;
+    kbToggle.classList.add('active');
+    kbToggle.setAttribute('aria-expanded','true');
+    // inputmode="none" alone is the correct way to suppress the phone's own
+    // on-screen keyboard while keeping the field genuinely editable — a
+    // readOnly field also kills the blinking caret and tap-to-position-
+    // cursor, which is exactly what we don't want here.
+    searchInput.setAttribute('inputmode','none');
+    searchInput.focus({preventScroll:true});
+    showKbPanel();
+  }
+  // Fully switch the in-app keyboard off (icon back to idle, phone keyboard allowed again).
+  function closeKeyboard(){
+    kbArmed = false;
+    kbToggle.classList.remove('active');
+    kbToggle.setAttribute('aria-expanded','false');
+    searchInput.removeAttribute('inputmode');
+    kbPopHistory();
+    hideKbPanel();
+  }
+  let kbHistoryPushed = false, kbIgnorePop = false;
+  function kbPushHistory(){
+    if(kbHistoryPushed) return;
+    try{ history.pushState({kb:1}, ''); kbHistoryPushed = true; }catch(e){}
+  }
+  function kbPopHistory(){
+    if(!kbHistoryPushed) return;
+    kbHistoryPushed = false;
+    try{ kbIgnorePop = true; history.back(); }catch(e){ kbIgnorePop = false; }
+  }
+  window.addEventListener('popstate', () => {
+    if(kbIgnorePop){ kbIgnorePop = false; return; }
+    if(kbHistoryPushed){
+      kbHistoryPushed = false;
+      if(kbOpen) hideKbPanel();   // keyboard stays armed; tapping the field raises it again
+    }
+  });
   kbToggle.addEventListener('click', () => {
     kbToggle.classList.remove('kb-toggle-tapped');
     void kbToggle.offsetWidth;
     kbToggle.classList.add('kb-toggle-tapped');
-    if(kbOpen) closeKeyboard(); else openKeyboard();
+    if(kbArmed) closeKeyboard(); else openKeyboard();
+  });
+  // While the in-app keyboard is armed but lowered, tapping the search field
+  // raises it again (the phone's own keyboard stays suppressed by inputmode).
+  searchInput.addEventListener('click', () => {
+    if(kbArmed && !kbOpen) showKbPanel();
   });
 
   // Tap = primary letter. Long-press (~420ms) = the small hinted alternate,
