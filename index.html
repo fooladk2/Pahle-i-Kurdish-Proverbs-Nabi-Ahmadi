@@ -1449,6 +1449,13 @@ body{overflow:hidden;position:fixed;inset:0;width:100%;}
   font-weight:400;
 }
 
+/* The keys must keep receiving the finger while it slides onto a popup option:
+   on touch screens the browser would otherwise treat that drag as a page pan
+   and cancel it, closing the popup before anything is typed. */
+.kb-panel{touch-action:none;}
+.kb-emoji-scroll{touch-action:pan-y;}
+.kb-emoji-tabs{touch-action:pan-x;}
+
 </style>
 </head>
 <body>
@@ -1771,6 +1778,7 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
 
   let current = Math.floor(Math.random()*total);
   let lastView = 'reader';
+  let kbUserOptedOut = false;   // session only: every launch starts with the in-app keyboard on
 
   const kuText = document.getElementById('kuText');
   const ku2Text = document.getElementById('ku2Text');
@@ -1991,8 +1999,10 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
     tabs.forEach(t => t.classList.toggle('active', t.dataset.target === name));
     lastView = name;
     if(name === 'bookmarks') renderBookmarks();
-    if(name === 'search') document.getElementById('searchInput').focus({preventScroll:true});
-    else {
+    if(name === 'search'){
+      if(!kbUserOptedOut) openKeyboard();
+      else document.getElementById('searchInput').focus({preventScroll:true});
+    } else {
       if(typeof closeKeyboard === 'function') closeKeyboard();
       setTopbarHidden(false);
     }
@@ -2601,6 +2611,24 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
   //    chevron key hides the panel but leaves the keyboard armed, so tapping
   //    the search field brings it straight back.
   let kbArmed = false;
+  // Icon-only tab bar while a keyboard is showing. The phone's own keyboard is
+  // noticed by the visible area shrinking well below its largest size.
+  let nativeKbUp = false;
+  function syncTabbarCompact(){
+    tabbarEl.classList.toggle('kb-compact', kbOpen || (nativeKbUp && !kbArmed));
+  }
+  (function watchPhoneKeyboard(){
+    const vv = window.visualViewport;
+    if(!vv) return;
+    let vvMax = vv.height;
+    const check = () => {
+      vvMax = Math.max(vvMax, vv.height);
+      nativeKbUp = (vvMax - vv.height) > 120;
+      syncTabbarCompact();
+    };
+    vv.addEventListener('resize', check);
+    window.addEventListener('orientationchange', () => setTimeout(() => { vvMax = vv.height; check(); }, 400));
+  })();
   function showKbPanel(){
     clearTimeout(kbCloseTimer);
     buildKeyboard();
@@ -2613,15 +2641,15 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
     void kbPanel.offsetHeight;
     kbPanel.style.height = targetHeight + 'px';
     kbPanel.classList.add('kb-open');
-    tabbarEl.classList.add('kb-compact');
     kbOpen = true;
+    syncTabbarCompact();
     kbPushHistory();
   }
   function hideKbPanel(){
     kbOpen = false;
     kbPanel.classList.remove('kb-open');
     kbPanel.style.height = '0px';
-    tabbarEl.classList.remove('kb-compact');
+    syncTabbarCompact();
     clearTimeout(kbCloseTimer);
     kbCloseTimer = setTimeout(() => { kbPanel.classList.remove('kb-visible'); }, 320);
   }
@@ -2706,7 +2734,15 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
     kbToggle.classList.remove('kb-toggle-tapped');
     void kbToggle.offsetWidth;
     kbToggle.classList.add('kb-toggle-tapped');
-    if(kbArmed) closeKeyboard(); else openKeyboard();
+    if(kbArmed){
+      kbUserOptedOut = true;
+      closeKeyboard();
+      // hand the field to the phone's own keyboard
+      setTimeout(() => { searchInput.blur(); searchInput.focus(); }, 60);
+    } else {
+      kbUserOptedOut = false;
+      openKeyboard();
+    }
   });
   // While the in-app keyboard is armed but lowered, tapping the search field
   // raises it again (the phone's own keyboard stays suppressed by inputmode).
