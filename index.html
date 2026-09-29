@@ -719,11 +719,11 @@ button{font-family:inherit;}
   animation:kbFlagWave 1.3s ease-in-out infinite;
 }
 .kb-toggle-btn.active svg circle:nth-child(1),
-.kb-toggle-btn.active svg circle:nth-child(4){ animation-delay:0s; }
+.kb-toggle-btn.active svg circle:nth-child(4){ animation-delay:.55s; }
 .kb-toggle-btn.active svg circle:nth-child(2),
-.kb-toggle-btn.active svg circle:nth-child(5){ animation-delay:.2s; }
+.kb-toggle-btn.active svg circle:nth-child(5){ animation-delay:.75s; }
 .kb-toggle-btn.active svg circle:nth-child(3),
-.kb-toggle-btn.active svg circle:nth-child(6){ animation-delay:.4s; }
+.kb-toggle-btn.active svg circle:nth-child(6){ animation-delay:.95s; }
 @keyframes kbFlagWave{
   0%,100%{transform:translateY(0);}
   25%{transform:translateY(-3.6px);}
@@ -791,11 +791,11 @@ html[data-kb-theme="app"] .kb-panel{
   height:44px;
   border:none;
   background:#fbfbfb;
-  color:#1a1a1a;
+  color:#000;
   border-radius:5px;
   box-shadow:0 1.5px 0 rgba(0,0,0,0.12);
   font-family:'Noto Naskh Arabic', 'LocalFallback', serif;
-  font-size:25px;
+  font-size:23px;
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;
   user-select:none;
@@ -819,7 +819,7 @@ html[data-kb-theme="dark"] .kb-emoji-cell{
   background:transparent;
 }
 .kb-key.kb-backspace,.kb-key.kb-dot,.kb-key.kb-comma,.kb-key.kb-placeholder{
-  background:#d4d4d4;
+  background:#c9d3e2;
 }
 html[data-kb-theme="app"] .kb-key.kb-backspace,
 html[data-kb-theme="app"] .kb-key.kb-dot,
@@ -843,13 +843,13 @@ html[data-kb-theme="app"] .kb-key.kb-placeholder{
 .kb-key .kb-hint-tr{top:4px;right:3px;}
 .kb-key .kb-hint-bl{bottom:4px;left:3px;}
 .kb-key .kb-hint-br{bottom:4px;right:3px;}
-.kb-key.kb-num{font-size:24px;}
-.kb-key.kb-backspace{color:#6e6e6e;font-size:18px;flex:0 0 46px;}
+.kb-key.kb-num{font-size:21px;}
+.kb-key.kb-backspace{color:#000;flex:0 0 46px;}
 .kb-key.kb-space{
   font-family:'Noto Naskh Arabic','LocalFallback',serif;
-  font-size:15px;
+  font-size:14px;
   font-weight:400;
-  color:#1a1a1a;
+  color:#000;
   background:#fbfbfb;
   flex:1 1 auto;
   min-width:0;
@@ -864,10 +864,10 @@ html[data-kb-theme="app"] .kb-key.kb-placeholder{
   font-size:20px;
 }
 .kb-key.kb-placeholder{border-radius:18px;flex:0 0 52px;}
-.kb-key.kb-lang{color:#6e6e6e;}
-.kb-key.kb-zwnj{color:#6e6e6e;}
+.kb-key.kb-lang{color:#000;}
+.kb-key.kb-zwnj{color:#000;}
 .kb-key.kb-shift{
-  color:#6e6e6e;
+  color:#000;
 }
 .kb-key.kb-shift.active{
   color:#fff;
@@ -877,9 +877,9 @@ html[data-kb-theme="app"] .kb-key.kb-placeholder{
   background:#2f6b7a;
   box-shadow:0 0 0 2px rgba(74,144,164,0.4) inset;
 }
-.kb-key.kb-page-toggle{font-size:12px;line-height:1.15;white-space:pre;color:#6e6e6e;}
+.kb-key.kb-page-toggle{font-size:12px;line-height:1.15;white-space:pre;color:#000;}
 .kb-key.kb-sym{font-size:19px;}
-.kb-key.kb-placeholder{font-size:13px;color:#6e6e6e;}
+.kb-key.kb-placeholder{font-size:16px;color:#000;}
 html[data-kb-theme="app"] .kb-key.kb-backspace,
 html[data-kb-theme="app"] .kb-key.kb-lang,
 html[data-kb-theme="app"] .kb-key.kb-zwnj,
@@ -955,7 +955,7 @@ html[data-kb-theme="dark"] .kb-multi-popup{
   gap:1px;
   padding:3px 0;
 }
-.kb-emoji-badge{
+.kb-emoji-badge,.kb-diacritic-badge{
   color:var(--ink-soft);
   line-height:1;
   display:flex;
@@ -1356,8 +1356,8 @@ html[data-kb-theme="dark"] .kb-multi-popup{
 .kb-key.kb-enter{
   flex:0 0 52px;
   border-radius:18px;
-  background:#d4d4d4;
-  color:#4a4a4a;
+  background:#c9d3e2;
+  color:#000;
 }
 html[data-kb-theme="app"] .kb-key .kb-hint{color:var(--ink-soft);}
 html[data-kb-theme="app"] .kb-key.kb-enter{background:color-mix(in srgb, var(--surface) 60%, var(--ink) 15%);color:var(--ink-soft);}
@@ -1368,14 +1368,15 @@ html[data-kb-theme="dark"]
   font-family:'Noto Naskh Arabic','LocalFallback',serif;
   font-size:15px;
   font-weight:400;
-  color:#6e6e6e;
+  color:#000;
 }
-.kb-emoji-badge{color:#6e6e6e;}
+.kb-emoji-badge{color:#000;}
+.kb-diacritic-badge{color:#000;}
 .kb-emoji-topbar{border-bottom-color:rgba(0,0,0,0.12);}
 .kb-panel{border-top-color:rgba(0,0,0,0.1);}
 .kb-multi-popup{background:#fff;}
-.kb-multi-opt{background:#ececec;color:#1a1a1a;}
-.kb-key-preview{background:#fff;color:#1a1a1a;}
+.kb-multi-opt{background:#ececec;color:#000;}
+.kb-key-preview{background:#fff;color:#000;}
 html[data-kb-theme="app"] .kb-emoji-back-top,
 html[data-kb-theme="app"] .kb-emoji-badge{color:var(--ink-soft);}
 html[data-kb-theme="app"] .kb-emoji-topbar,
@@ -1405,7 +1406,7 @@ html[data-kb-theme="dark"] .kb-emoji-badge{color:#d0d0d0;}
   border-radius:50%;
   background:transparent;
   box-shadow:none;
-  color:#6e6e6e;
+  color:#000;
 }
 .kb-key.kb-nav.kb-pressed{background:rgba(0,0,0,0.1);filter:none;transform:scale(0.92);}
 html[data-kb-theme="app"] .kb-key.kb-nav{background:transparent;color:var(--ink-soft);}
@@ -1455,6 +1456,8 @@ body{overflow:hidden;position:fixed;inset:0;width:100%;}
 .kb-panel{touch-action:none;}
 .kb-emoji-scroll{touch-action:pan-y;}
 .kb-emoji-tabs{touch-action:pan-x;}
+
+.kb-diacritic-badge{font-family:'Noto Naskh Arabic','LocalFallback',serif;font-size:15px;transform:translateY(10px);}
 
 </style>
 </head>
@@ -2278,7 +2281,7 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
         return '<button type="button" class="'+keyClass+'" data-key="'+(ins||k)+'"'+(hintsJson?' data-hints="'+hintsJson+'"':'')+'>'+k+hintSpans+'</button>';
       }).join('');
       if(row.backspace){
-        html += '<button type="button" class="kb-key kb-backspace" data-action="backspace" aria-label="پاک کردن حرف">⌫</button>';
+        html += '<button type="button" class="kb-key kb-backspace" data-action="backspace" aria-label="پاک کردن حرف">' + BACKSPACE_ICON_SVG + '</button>';
       }
       html += '</div>';
       return html;
@@ -2294,7 +2297,9 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
       '<button type="button" class="kb-key kb-zwnj" data-key="&#8204;" aria-label="نیم‌فاصله">' +
         '<svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l-5 6 5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 6l5 6-5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="4" x2="12" y2="20" stroke="currentColor" stroke-width="2" stroke-dasharray="2.4 2.4" stroke-linecap="round"/></svg>' +
       '</button>' +
-      '<button type="button" class="kb-key kb-dot" data-key="." data-hints="'+encodeURIComponent(JSON.stringify(['ْ','َ','ِ','ُ','ّ','ً','ٍ','ٌ']))+'">.</button>' +
+      '<button type="button" class="kb-key kb-dot kb-emoji-key" data-key="." data-hints="'+encodeURIComponent(JSON.stringify(['ْ','َ','ِ','ُ','ّ','ً','ٍ','ٌ']))+'">' +
+        '<span class="kb-diacritic-badge">ً</span><span class="kb-comma-glyph">.</span>' +
+      '</button>' +
       ENTER_KEY_HTML +
     '</div>' + NAV_STRIP_HTML;
     syncKbHeight();
@@ -2321,7 +2326,7 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
         return '<button type="button" class="'+keyClass+'" data-key="'+ch+'">'+ch+'</button>';
       }).join('');
       if(row.backspace){
-        html += '<button type="button" class="kb-key kb-backspace" data-action="backspace" aria-label="Backspace">⌫</button>';
+        html += '<button type="button" class="kb-key kb-backspace" data-action="backspace" aria-label="Backspace">' + BACKSPACE_ICON_SVG + '</button>';
       }
       html += '</div>';
       return html;
@@ -2334,7 +2339,9 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
       '</button>' +
       '<button type="button" class="kb-key kb-lang" data-action="lang-toggle" aria-label="Change keyboard language">' + GLOBE_ICON_SVG + '</button>' +
       '<button type="button" class="kb-key kb-space" data-action="space">English</button>' +
-      '<button type="button" class="kb-key kb-dot" data-key=".">.</button>' +
+      '<button type="button" class="kb-key kb-dot kb-emoji-key" data-key=".">' +
+        '<span class="kb-diacritic-badge">ً</span><span class="kb-comma-glyph">.</span>' +
+      '</button>' +
       ENTER_KEY_HTML +
     '</div>' + NAV_STRIP_HTML;
     syncKbHeight();
@@ -2346,6 +2353,7 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
     '<div class="kb-navstrip">' +
       '<button type="button" class="kb-key kb-nav" data-action="hide-keyboard" aria-label="پایین آوردن صفحه‌کلید"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
     '</div>';
+  const BACKSPACE_ICON_SVG = '<svg viewBox="0 0 24 24" width="31" height="31" style="transform:scaleX(-1)"><path d="M9 5H21a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H9l-7-7 7-7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12.2 9.8l4.6 4.6M16.8 9.8l-4.6 4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
   const EMOJI_ICON_SVG = '<svg viewBox="0 0 24 24" width="14" height="14"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.7" cy="9.8" r="1.15" fill="currentColor"/><circle cx="15.3" cy="9.8" r="1.15" fill="currentColor"/><path d="M8 14.2c1 1.4 2.4 2.1 4 2.1s3-.7 4-2.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
 
   const EMOJI_CATEGORIES = [
@@ -2558,7 +2566,7 @@ const PROVERBS = [{"ku":"ئابڕوو خوەت هە دەسْ خوەت ڤیردا
         return '<button type="button" class="'+keyClass+'" data-key="'+ch+'">'+ch+'</button>';
       }).join('');
       if(row.backspace){
-        html += '<button type="button" class="kb-key kb-backspace" data-action="backspace" aria-label="پاک کردن حرف">⌫</button>';
+        html += '<button type="button" class="kb-key kb-backspace" data-action="backspace" aria-label="پاک کردن حرف">' + BACKSPACE_ICON_SVG + '</button>';
       }
       html += '</div>';
       return html;
